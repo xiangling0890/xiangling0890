@@ -1,0 +1,60 @@
+function mergeJsonArray(jsonArray, key1, key2, key3) {
+  let mergedJson = {};
+  let mergedJsonArray = [];
+ 
+ 
+  jsonArray.forEach(item => {
+    if (item[key1] in mergedJson) {
+      if (item[key2] in mergedJson[item[key1]]) {
+        mergedJson[item[key1]][item[key2]].push(item[key3]);
+      } else {
+        mergedJson[item[key1]][item[key2]] = [item[key3]];
+      }
+    } else {
+      mergedJson[item[key1]] = {};
+      mergedJson[item[key1]][item[key2]] = [item[key3]];
+    }
+  });
+ 
+ 
+  for (const key1 in mergedJson) {
+    for (const key2 in mergedJson[key1]) {
+      let sum = 0.0;
+      let median = 0.0;
+      let mean = 0.0;
+      let count = 0;
+      let min = 0.0;
+      let max = 0.0;
+ 
+ 
+      mergedJson[key1][key2].forEach(item => {
+        sum += item;
+        count += 1;
+      });
+ 
+ 
+      mean = sum / count;
+ 
+ 
+      mergedJson[key1][key2].sort((a, b) => a - b);
+      median = mergedJson[key1][key2][Math.floor(mergedJson[key1][key2].length / 2)];
+ 
+ 
+      min = mergedJson[key1][key2][0];
+      max = mergedJson[key1][key2][mergedJson[key1][key2].length - 1];
+ 
+ 
+      mergedJsonArray.push({
+        [key1]: key1,
+        [key2]: key2,
+        'count': count,
+        'sum': sum,
+        'mean': mean,
+        'median': median,
+        'min': min,
+        'max': max
+      });
+    }
+  }
+    return mergedJsonArray;
+}
