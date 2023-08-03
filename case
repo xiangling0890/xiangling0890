@@ -1,0 +1,22 @@
+case 0: spark.img=sparkPics[pic1]; break;
+			case 1:
+				spark.img=sparkPics[parseInt(Math.random()*2)?pic1:pic2];
+				break;
+			case 2:
+				switch(parseInt(Math.random()*3)){
+					case 0: spark.img=sparkPics[pic1]; break;
+					case 1: spark.img=sparkPics[pic2]; break;
+					case 2: spark.img=sparkPics[pic3]; break;
+				}
+				break;
+		}
+		spark.radius=25+Math.random()*50;
+		spark.alpha=1;
+		spark.trail=new Array();
+		sparks.push(spark);
+	}
+	switch(parseInt(Math.random()*4)){
+		case 0:	pow=new Audio(s+"pow1.ogg"); break;
+		case 1:	pow=new Audio(s+"pow2.ogg"); break;
+		case 2:	pow=new Audio(s+"pow3.ogg"); break;
+		case 3:	pow=new Audio(s+"pow4.ogg"); break;
